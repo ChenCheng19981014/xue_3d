@@ -1,0 +1,74 @@
+{
+	"metadata": {
+		"type": "Level"
+	},
+	"project": {
+		"shadows": true,
+		"shadowType": 1,
+		"vr": false,
+		"physicallyCorrectLights": false,
+		"toneMapping": 0,
+		"toneMappingExposure": 1
+	},
+	"camera": {
+		"metadata": {
+			"version": 4.5,
+			"type": "Object",
+			"generator": "Object3D.toJSON"
+		},
+		"object": {
+			"uuid": "5493C1AB-FFDA-41F9-83B4-CA53DE7247C5",
+			"type": "PerspectiveCamera",
+			"name": "Camera",
+			"layers": 1,
+			"matrix": [0.960674,0,-0.277676,0,-0.124059,0.894647,-0.429206,0,0.248422,0.446776,0.859465,0,1234.551062,5382.537452,12188.415594,1],
+			"fov": 60,
+			"zoom": 1,
+			"near": 100,
+			"far": 500000,
+			"focus": 10,
+			"aspect": 1.908127,
+			"filmGauge": 35,
+			"filmOffset": 0
+		}
+	},
+	"scene": {
+		"metadata": {
+			"version": 4.5,
+			"type": "Object",
+			"generator": "Object3D.toJSON"
+		},
+		"object": {
+			"uuid": "A7915CC5-324F-4C61-BC9C-46FA6188B3AA",
+			"type": "Scene",
+			"name": "Scene",
+			"layers": 1,
+			"matrix": [1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1],
+			"children": [
+				{
+					"uuid": "4F37F313-FBBD-4ACD-97FD-A475FD927BC7",
+					"type": "DirectionalLight",
+					"name": "DirectionalLight",
+					"layers": 1,
+					"matrix": [1,0,0,0,0,1,0,0,0,0,1,0,-164.014718,1612.280058,-1215.504112,1],
+					"color": 10402815,
+					"intensity": 1.6,
+					"shadow": {
+						"camera": {
+							"uuid": "1B43FFF5-AD6E-4FD2-A292-2476E78F4A57",
+							"type": "OrthographicCamera",
+							"layers": 1,
+							"zoom": 1,
+							"left": -200,
+							"right": 200,
+							"top": -200,
+							"bottom": 200,
+							"near": 0.5,
+							"far": 500
+						}
+					}
+				}]
+		}
+	},
+	"scripts": {}
+}
