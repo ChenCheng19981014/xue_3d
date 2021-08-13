@@ -7,7 +7,7 @@ import {
   CSS3DRenderer,
   CSS3DObject
 } from "three/examples/jsm/renderers/CSS3DRenderer";
-function Pb(assets) {
+function Pb (assets) {
   let { scene, camera, controls, eventBus, renderer, dom, THREE } = assets;
   this.effect = effect.call(this);
   /* 精灵图 */
@@ -99,7 +99,7 @@ function Pb(assets) {
   this.scalarBoom = (model, scalar) => {
     var modelCenter = new THREE.Vector3(0, 0, 0);
 
-    model.traverse(function(value) {
+    model.traverse(function (value) {
       if (value.isMesh) {
         let meshBox3 = new THREE.Box3();
         meshBox3.setFromObject(value);
@@ -120,7 +120,7 @@ function Pb(assets) {
         );
       }
     });
-    model.traverse(function(value) {
+    model.traverse(function (value) {
       if (!value.isMesh || !value.worldDir) return;
       value.position.copy(
         new THREE.Vector3()
@@ -243,7 +243,7 @@ function Pb(assets) {
         camera.position.set(data.cx, data.cy, data.cz);
         controls.target.set(data.tx, data.ty, data.tz);
       },
-      _ => {}
+      _ => { }
     );
   };
   this.deepFindInfo = (model, type) => {
@@ -339,7 +339,7 @@ function Pb(assets) {
   };
 }
 
-function effect() {
+function effect () {
   let that = new Object();
   // 外边框后处理
   that.effectComposer;

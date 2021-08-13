@@ -9,7 +9,7 @@ import ChangeInterface from "./Change";
  * @{dom} 接收需要渲染入的dom
  */
 var APP = {
-  Player: function(dom) {
+  Player: function (dom) {
     let renderer2 = new CSS3DRenderer();
     renderer2.setSize(dom.clientWidth, dom.clientHeight);
     renderer2.domElement.style.position = "absolute";
@@ -36,7 +36,7 @@ var APP = {
 
     this.eventBus = new eventBus();
 
-    this.load = function(json) {
+    this.load = function (json) {
       var project = json.project;
 
       if (project.vr !== undefined) renderer.xr.enabled = project.vr;
@@ -115,17 +115,17 @@ var APP = {
       dispatch(events.init, arguments);
     };
 
-    this.setCamera = function(value) {
+    this.setCamera = function (value) {
       camera = value;
       camera.aspect = this.width / this.height;
       camera.updateProjectionMatrix();
     };
 
-    this.setScene = function(value) {
+    this.setScene = function (value) {
       scene = value;
     };
 
-    this.setSize = function(width, height) {
+    this.setSize = function (width, height) {
       this.width = width;
       this.height = height;
 
@@ -139,7 +139,7 @@ var APP = {
       }
     };
 
-    function dispatch(array, event) {
+    function dispatch (array, event) {
       for (var i = 0, l = array.length; i < l; i++) {
         array[i](event);
       }
@@ -147,11 +147,11 @@ var APP = {
 
     var time, prevTime;
 
-    function animate() {
+    function animate () {
       time = performance.now();
       try {
         dispatch(events.update, { time: time, delta: time - prevTime });
-      } catch (e) {}
+      } catch (e) { }
       if (controls) controls.update();
       this.change.animate && this.change.animate();
 
@@ -160,7 +160,7 @@ var APP = {
       prevTime = time;
     }
 
-    this.play = function() {
+    this.play = function () {
       if (renderer.xr.enabled) dom.append(vrButton);
       prevTime = performance.now();
       document.addEventListener("keydown", onDocumentKeyDown);
@@ -184,7 +184,7 @@ var APP = {
         dom: dom
       });
     };
-    this.stop = function() {
+    this.stop = function () {
       if (renderer.xr.enabled) vrButton.remove();
       document.removeEventListener("keydown", onDocumentKeyDown);
       document.removeEventListener("keyup", onDocumentKeyUp);
@@ -200,7 +200,7 @@ var APP = {
       renderer.setAnimationLoop(null);
     };
 
-    this.dispose = function() {
+    this.dispose = function () {
       this.stop();
       renderer.dispose();
       camera = undefined;
@@ -213,35 +213,35 @@ var APP = {
 
     //
 
-    function onDocumentKeyDown(event) {
+    function onDocumentKeyDown (event) {
       dispatch(events.keydown, event);
     }
 
-    function onDocumentKeyUp(event) {
+    function onDocumentKeyUp (event) {
       dispatch(events.keyup, event);
     }
 
-    function onDocumentMouseDown(event) {
+    function onDocumentMouseDown (event) {
       dispatch(events.mousedown, event);
     }
 
-    function onDocumentMouseUp(event) {
+    function onDocumentMouseUp (event) {
       dispatch(events.mouseup, event);
     }
 
-    function onDocumentMouseMove(event) {
+    function onDocumentMouseMove (event) {
       dispatch(events.mousemove, event);
     }
 
-    function onDocumentTouchStart(event) {
+    function onDocumentTouchStart (event) {
       dispatch(events.touchstart, event);
     }
 
-    function onDocumentTouchEnd(event) {
+    function onDocumentTouchEnd (event) {
       dispatch(events.touchend, event);
     }
 
-    function onDocumentTouchMove(event) {
+    function onDocumentTouchMove (event) {
       dispatch(events.touchmove, event);
     }
 
@@ -251,7 +251,7 @@ var APP = {
   }
 };
 
-function initScene(sceneUrl, dom) {
+function initScene (sceneUrl, dom) {
   let init = new Promise((res, rej) => {
     var loader = new THREE.FileLoader();
     loader.load(
@@ -278,11 +278,11 @@ function initScene(sceneUrl, dom) {
         //   });
         // });
 
-        window.addEventListener("resize", function() {
+        window.addEventListener("resize", function () {
           player.setSize(dom.clientWidth, dom.clientHeight);
         });
       },
-      function(xhr) {
+      function (xhr) {
         return;
         let className = "load_scene_progress",
           div = document.querySelector("." + className),
@@ -335,22 +335,29 @@ let splitFileList = [
   "雪浪大会.json"
 ];
 // 4000ms
-function splitLoad(assets, file) {
+function splitLoad (assets, file) {
   let { scene } = assets;
   return new Promise((s, j) => {
+
     let worker = new Worker("./static/three3dApp/model1/load.js");
+
     console.log(new Date().getTime());
+
     let nowSceneLength = scene.children.length;
 
     splitFileList.forEach((item, index) => {
       worker.postMessage(item);
       worker.onmessage = event => {
+        console.log(event.data, 'event---');
         let model = new THREE.ObjectLoader().parse(event.data);
+        console.log(model, '模型');
         scene.add(model);
         /** 9*/
         if (scene.children.length < splitFileList.length + nowSceneLength)
           return;
+
         console.log(new Date().getTime());
+
         worker.terminate();
         s();
       };
@@ -360,3 +367,5 @@ function splitLoad(assets, file) {
 }
 
 export default initScene;
+
+

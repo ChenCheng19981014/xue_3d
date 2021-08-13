@@ -1,6 +1,6 @@
 import Pb from "./pb";
 import * as THREE from "./three";
-function ChangeInterface(assets) {
+function ChangeInterface (assets) {
   console.log(new Date().getTime());
   let { scene, camera, controls, eventBus, renderer, dom } = assets;
   //相机缓动
@@ -322,17 +322,17 @@ function ChangeInterface(assets) {
     // console.log(controls.target, "controls.target----------------");
     console.log(
       Math.round(camera.position.x) +
-        "," +
-        Math.round(camera.position.y) +
-        "," +
-        Math.round(camera.position.z)
+      "," +
+      Math.round(camera.position.y) +
+      "," +
+      Math.round(camera.position.z)
     );
     console.log(
       Math.round(controls.target.x) +
-        "," +
-        Math.round(controls.target.y) +
-        "," +
-        Math.round(controls.target.z)
+      "," +
+      Math.round(controls.target.y) +
+      "," +
+      Math.round(controls.target.z)
     );
     let xueLangDaHui = scene.getObjectByName("雪浪大会");
     let xueLangHouseModel = scene.getObjectByName("10#XLY");
@@ -515,7 +515,7 @@ function ChangeInterface(assets) {
   };
 }
 //雪浪楼
-function xueLangDunHouse() {
+function xueLangDunHouse () {
   let { scene, camera, controls } = this.assets;
   let that = {};
   // let xueLangHouseModel = scene.getObjectByName("10#XLY");
@@ -827,7 +827,7 @@ function xueLangDunHouse() {
   return that;
 }
 /* 对于雪浪楼层 */
-function xueLangFloor() {
+function xueLangFloor () {
   let { scene } = this.assets;
   let that = {};
   // 雪浪每个楼层
@@ -906,13 +906,13 @@ function xueLangFloor() {
       { y: obj.position.y, opc: 1 },
       isUp
         ? {
-            y: obj.position.y + (obj.name == "f2" ? f2Offset : f3Offset),
-            opc: 0.3
-          }
+          y: obj.position.y + (obj.name == "f2" ? f2Offset : f3Offset),
+          opc: 0.3
+        }
         : {
-            y: floorInitYPosition[obj.name],
-            opc: 1
-          },
+          y: floorInitYPosition[obj.name],
+          opc: 1
+        },
       0.5,
       data => {
         obj.position.y = data.y;
@@ -920,7 +920,7 @@ function xueLangFloor() {
           i.transparent = true;
         });
       },
-      () => {}
+      () => { }
     );
   };
   // 楼板透明度功能
@@ -940,7 +940,7 @@ function xueLangFloor() {
   return that;
 }
 /* 雪浪特效 */
-function specialEffect() {
+function specialEffect () {
   let { scene } = this.assets;
   let that = {};
   let xuelangBuild = scene.getObjectByName("XLY");
@@ -983,7 +983,7 @@ function specialEffect() {
   return that;
 }
 // 监控摄像机控制以及事件
-function aboutMonitor() {
+function aboutMonitor () {
   let { scene, camera, controls } = this.assets;
   let that = {};
   // 摄像机的名称 位置 以及target
@@ -1200,7 +1200,7 @@ function aboutMonitor() {
   return that;
 }
 /** 上升粒子 特效等*/
-function Ascendingparticle() {
+function Ascendingparticle () {
   let { scene, camera } = this.assets;
   /*-----------------------粒子----------------------------- */
   // 粒子的数量
@@ -1236,7 +1236,7 @@ function Ascendingparticle() {
     that.addparticle();
   };
   /* 添加场景空中粒子 */
-  that.addparticle = function() {
+  that.addparticle = function () {
     // new一个新的组
     group.name = "upLineLittle";
     scene.add(group);
@@ -1308,7 +1308,7 @@ function Ascendingparticle() {
     group.add(linesMesh);
   };
   // 更新粒子动画
-  that.update = function() {
+  that.update = function () {
     if (group.children.length != 2) return;
 
     // 游离粒子更新
@@ -1392,7 +1392,7 @@ function Ascendingparticle() {
     pointCloud.geometry.attributes.position.needsUpdate = true;
   };
   /* 添加上升粒子 */
-  that.addAscendingparticle = function() {
+  that.addAscendingparticle = function () {
     //设置变量 接收生成的线
     that.lines = [];
     let ammountLines = 35;
@@ -1440,7 +1440,7 @@ function Ascendingparticle() {
   return that;
 }
 // 针对雪浪大会
-function xueLangDaHuiFuntion() {
+function xueLangDaHuiFuntion () {
   let { scene } = this.assets;
   let that = {};
   let initGuangXiao = () => {
@@ -1479,7 +1479,7 @@ function xueLangDaHuiFuntion() {
 //----------------------------------------------------------------------------------------
 
 // 停车场抬杆子
-function ParkingStopRod() {
+function ParkingStopRod () {
   let { scene, camera, controls } = this.assets;
   /* 抬杆 */
   let stopRodModel = scene.getObjectByName("daozha");
@@ -1511,7 +1511,7 @@ function ParkingStopRod() {
         controls.target.y = data.Ty;
         controls.target.z = data.Tz;
       },
-      () => {}
+      () => { }
     );
     this.startCloseMap.stopRod = anime;
     console.log(this.startCloseMap);
@@ -1538,13 +1538,13 @@ function ParkingStopRod() {
       data => {
         stopRodModel.rotation.z = data.z;
       },
-      () => {}
+      () => { }
     );
   };
   return { focus, stopRodAnima };
 }
 // 停车场
-function parkingFloor() {
+function parkingFloor () {
   let { scene, camera, controls } = this.assets;
   const b1Floor = scene.getObjectByName("Parking02");
   let that = {};
